@@ -6,11 +6,18 @@
     tools:context=".Dairy">
 
     <!-- TODO: Update blank fragment layout -->
-    <LinearLayout
-        android:id="@+id/llMasterDairy"
+    <ScrollView
         android:layout_width="match_parent"
-        android:orientation="vertical"
         android:layout_height="match_parent">
 
-    </LinearLayout>
+        <LinearLayout
+            android:paddingTop="120dp"
+            android:id="@+id/llMasterDairy"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        </LinearLayout>
+    </ScrollView>
+
 </FrameLayout>

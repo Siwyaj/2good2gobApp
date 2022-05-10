@@ -3,7 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Medialogi_projekter/2good2gooApp/app/src/main/res/layout/activity_main.xml" value="0.22" />
+        <entry key="..\:/Medialogi_projekter/2good2gooApp/app/src/main/res/layout/activity_main.xml" value="0.1" />
+        <entry key="..\:/Medialogi_projekter/2good2gooApp/app/src/main/res/layout/bottom_sheet.xml" value="0.22" />
         <entry key="..\:/Medialogi_projekter/2good2gooApp/app/src/main/res/layout/fragment_dairy.xml" value="0.296875" />
         <entry key="..\:/Medialogi_projekter/2good2gooApp/app/src/main/res/layout/fragment_grain.xml" value="0.17864583333333334" />
         <entry key="..\:/Medialogi_projekter/2good2gooApp/app/src/main/res/layout/fragment_meat.xml" value="0.296875" />

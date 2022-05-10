@@ -22,8 +22,8 @@ import java.util.Locale;
 
 public class Veggies extends Fragment {
 
-    LinearLayout llMasterVeggies;
-
+    private LinearLayout llMasterVeggies;
+    private String[] veggieArray = {"Æble","Ærter","Ærteskud","Agurk","Ananas","Appelsin","Asparges","Aubergine","Avocado","Bælgede edamamebønner","Bagekartofler","Bananer","Blomkål","Bønnespirer","Broccoli","Champignon","Cherrytomater","Citron","Citrongræs","Citronsaft","Dåse majs","Enebær","Fennikel","Flåede tomater","Forårsløg","Frisk basilikum","Frisk chili","Frisk ingefær","Frisk koriander","Frisk oregano","Frisk rosmarin","Frisk salvie","Frisk spinat","Frisk timian","Glaskartofler","Granatæbler","Grønkål","Gulerod","Gurkemeje","Hakkede tomater","Hjertesalat","Hvidkål","Hvidløg","Iceberg salat","Jalapenos","Jordskokker","Kål","Kartofler","Kinakål","Knoldselleri","Lime","Limeblade","Limesaft","Linser","Løg","Majskolber","Mango","Oliven","Pære","Pastinak","Peberfrugt","Peberrod","Perleløg","Persille","Pickles","Porre","Portobellosvamp","Purløg","Radiser","Rødbeder","Rødløg","Rosenkål","Rosiner","Rucola","Selleri","Skalotteløg","Søde kartofler","Soltørrede tomater","Spidskål","Squash","Sukkerærter","Svesker","Syltede rødløg","Tofu","Tomat","Tranebær","Vindruer","Zittauerløg"};
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -31,132 +31,9 @@ public class Veggies extends Fragment {
 
         View view = inflater.inflate(R.layout.fragment_veggies, container, false);
         llMasterVeggies =(LinearLayout) view.findViewById(R.id.llMasterVeggies);
-        MakeTable();
+
+                ((MainActivity)getActivity()).MakeTable(veggieArray, llMasterVeggies, getActivity());
+
         return view;
-    }
-    public void MakeTable() {
-        ArrayList<String> vegetablesList = new ArrayList<String>();
-        ArrayList<String> ingredientsSelected = new ArrayList<String>();
-        String[] alphabet = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","Æ","Ø","Å"};//,'Æ','Ø','Å'
-        String[] veggieArray = {"Gulderod","Bønner","Broccoli","Kartoffel","Pore","Tomat","Squash","Peberfrugt","Løg","Hvidløg", "Chili", "Champignon","Celleri", "Blomkål"};
-        //androidx.gridlayout.widget.GridLayout gridMaster = findViewById(R.id.gridMaster);
-
-
-        for (String alpha: alphabet) {
-            ArrayList<String> currentLetter = new ArrayList<String>();
-            for (int i=0; i<veggieArray.length-1;i++){
-                if (veggieArray[i].startsWith(alpha)){
-                    currentLetter.add(veggieArray[i]);
-                }
-            }
-            if (!currentLetter.isEmpty()){
-                TextView letter = new TextView(getActivity());
-                letter.setText(alpha);
-                llMasterVeggies.addView(letter);
-                GridLayout letterGrid = new GridLayout(getActivity());
-                for (String s : currentLetter) {
-
-                    //all of the object creation
-                    CardView cardView = new CardView(getActivity());
-                    ImageView ingredientPicture = new ImageView(getActivity());
-                    LinearLayout llIngredient = new LinearLayout(getActivity());
-                    TextView textView = new TextView(getActivity());
-                    //gridMaster.setPadding(50,50,50,50);
-
-                    //imag
-                    int id = getResources().getIdentifier(replaceCharUsingCharArray(s).toLowerCase(Locale.ROOT), "drawable",getActivity().getPackageName());
-                    ingredientPicture.setImageResource(id);
-                    GradientDrawable border = new GradientDrawable();
-                    border.setColor(0xFFFFFFFF);
-                    border.setStroke(15,0xFFFEAD30);
-                    ingredientPicture.setBackgroundDrawable(border);
-
-
-                    llIngredient.setHorizontalGravity(11);
-                    llIngredient.setGravity(11);
-                    llIngredient.setOrientation(LinearLayout.VERTICAL);
-
-                    ingredientPicture.setClickable(true);
-                    ingredientPicture.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-                            if (ingredientsSelected.contains(s)){
-                                ingredientsSelected.remove(s);
-                                border.setStroke(15,0xFFFEAD30);
-                                ingredientPicture.setBackgroundDrawable(border);
-                            }
-                            else{
-                                ingredientsSelected.add(s);
-                                border.setStroke(25,0xFFFEAD30);
-                                ingredientPicture.setBackgroundDrawable(border);
-                            }
-                            CharSequence selected = s;
-                            int duration = Toast.LENGTH_SHORT;
-
-                        }
-                    });
-                    //The card only containing the picture of the ingredient.
-                    cardView.setRadius(20);
-                    cardView.setPadding(50, 50, 50, 50);
-
-                    cardView.getCardBackgroundColor();
-                    cardView.setLayoutParams(new RelativeLayout.LayoutParams(300, 300));
-                    ingredientPicture.setPadding(20, 20, 20, 20);
-
-                    //ViewGroup.LayoutParams layoutParams = imageView.getLayoutParams();
-                    //layoutParams.width();
-                    //imageView.setLayoutParams(layoutParams);
-
-                    //The ingredient text
-                    textView.setPadding(20, 20, 20, 20);
-                    textView.setGravity(11);
-                    textView.setText(s);
-                    //textView.setLayoutParams(params);
-
-                    llIngredient.setPadding(20, 20, 20, 20);
-
-                    //putting everything together
-                    cardView.addView(ingredientPicture);
-                    llIngredient.addView(cardView);
-                    llIngredient.addView(textView);
-                    if (letterGrid.getParent()!=null){
-                        ((ViewGroup)letterGrid.getParent()).removeView(letterGrid);
-                    }
-
-                    letterGrid.addView(llIngredient);
-                    llMasterVeggies.addView(letterGrid);
-                }
-            }
-        }
-        //Integer[] picture = {R.drawable.blomkl,R.drawable.broccoli,R.drawable.celleri,R.drawable.chili,R.drawable.gulderod,R.drawable.hvidlg,R.drawable.kartoffel,R.drawable.lg,R.drawable.peberfrugt,R.drawable.pore,R.drawable.tomat};
-    }
-    public String replaceCharUsingCharArray(String str) {//this method just makes it so, that when a string is put into it containing æ,ø,å, then it will return the same word, but wil ae,oe,aa
-        char[] charWordArray = str.toCharArray();
-        ArrayList<String> wordArray = new ArrayList<String>();
-        for (int i=0;i<charWordArray.length;i++){
-            wordArray.add(String.valueOf(charWordArray[i]));
-        }
-        for (String c : wordArray) {
-            Log.d("MainActivity",""+c);
-            switch (c){
-                case "æ":
-                    wordArray.set(wordArray.indexOf(c),"ae");
-                    break;
-                case "ø":
-                    wordArray.set(wordArray.indexOf(c),"oe");
-                    break;
-                case "å":
-                    wordArray.set(wordArray.indexOf(c),"aa");
-                    break;
-                default:
-                    break;
-
-            }
-        }
-        String word = "";
-        for (String s:wordArray) {
-            word+=s;
-        }
-        return word;
     }
 }
