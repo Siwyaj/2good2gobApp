@@ -9,7 +9,6 @@ public class RecipesClass {
     String link;
     String img;
     String time;
-    List<String> ingrFull;
     List<String> ingrSort;
 
     public int getId() {
@@ -49,7 +48,6 @@ public class RecipesClass {
                 ", link='" + link +
                 ", img='" + img  +
                 ", time='" + time +
-                ", ingrFull='" + ingrFull +
                 ", ingrSort='" + ingrSort +
                 '}';
 

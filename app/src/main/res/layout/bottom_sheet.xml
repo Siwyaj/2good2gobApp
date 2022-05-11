@@ -30,18 +30,14 @@
                 android:layout_height="22dp"
                 app:srcCompat="@android:drawable/arrow_up_float" />
 
-            <Button
-                android:id="@+id/findOpskriftButton"
-                android:layout_width="wrap_content"
+            <TextView
+                android:id="@+id/textView"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/mainOrange"
                 android:gravity="center"
-                android:onClick="MakeRecipeXML"
-                android:text="Find opskrift"
-                android:textColor="@color/black"
-                android:textSize="20dp">
-
-            </Button>
+                android:text="Find opskrifter"
+                android:textStyle="bold"
+                android:textSize="30dp" />
 
             <androidx.core.widget.NestedScrollView
                 android:id="@+id/nestedScrollView"

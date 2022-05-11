@@ -52,13 +52,6 @@ public class MainActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        findOpskriftButton = findViewById(R.id.findOpskriftButton);
-        findOpskriftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-            }
-        });
-
 
         recipes = MakeRecipeList();
 
@@ -79,9 +72,9 @@ public class MainActivity extends AppCompatActivity{
         VPAdapter.addFragment(new Grain(),"");
         viewPager.setAdapter(VPAdapter);
 
-        tabLayout.getTabAt(0).setIcon(R.drawable.veggie);
-        tabLayout.getTabAt(1).setIcon(R.drawable.steak);
-        tabLayout.getTabAt(2).setIcon(R.drawable.milk);
+        tabLayout.getTabAt(0).setIcon(R.drawable.vegsandfruit);
+        tabLayout.getTabAt(1).setIcon(R.drawable.fishandmeat);
+        tabLayout.getTabAt(2).setIcon(R.drawable.dairy);
         tabLayout.getTabAt(3).setIcon(R.drawable.bread);
     }
     public String replaceCharUsingCharArray(String str) {//this method just makes it so, that when a string is put into it containing æ,ø,å, then it will return the same word, but wil ae,oe,aa
@@ -142,7 +135,7 @@ public class MainActivity extends AppCompatActivity{
                     ingredientPicture.setImageResource(id);
                     GradientDrawable border = new GradientDrawable();
                     border.setColor(0xFFFFFFFF);
-                    border.setStroke(15,0xFFFEAD30);
+                    border.setStroke(15,0xFFFFFFFF);
                     ingredientPicture.setBackgroundDrawable(border);
 
 
@@ -156,7 +149,7 @@ public class MainActivity extends AppCompatActivity{
                         public void onClick(View view) {
                             if (ingredientsSelected.contains(s.toLowerCase(Locale.ROOT))){
                                 ingredientsSelected.remove(s.toLowerCase(Locale.ROOT));
-                                border.setStroke(15,0xFFFEAD30);
+                                border.setStroke(15,0xFFFFFFFF);
                                 ingredientPicture.setBackgroundDrawable(border);
                             }
                             else{
@@ -214,6 +207,9 @@ public class MainActivity extends AppCompatActivity{
         ImageView clock = new ImageView(this);
         TextView itemsUsed = new TextView(this);
         TextView time = new TextView(this);
+        TextView kilde = new TextView(this);
+
+        kilde.setText("Kilde: www.madensverden.dk");
 
         //change font of time and recipeNameTextView
 
@@ -221,10 +217,12 @@ public class MainActivity extends AppCompatActivity{
         LinearLayout bottomOfBar = new LinearLayout(this);
         LinearLayout mortorAndItems = new LinearLayout(this);
         LinearLayout clockAndTime = new LinearLayout(this);
-        GridLayout letterGrid = new GridLayout(this);
+        LinearLayout timeAndKilde = new LinearLayout(this);
+
+        timeAndKilde.addView(kilde);
+        timeAndKilde.addView(clockAndTime);
 
         //padding
-
         bottombarLLMaster.setPadding(0,0,0,0);
         recipeImage.setPadding(20,20,20,20);
 
@@ -264,7 +262,8 @@ public class MainActivity extends AppCompatActivity{
         clockAndTime.setGravity(Gravity.RIGHT);
         bottomOfBar.addView(recipeNameTextview);
         //bottomOfBar.addView(mortorAndItems);
-        bottomOfBar.addView(clockAndTime);
+        //bottomOfBar.addView(timeAndKilde);
+        //bottomOfBar.addView(clockAndTime);
 
         cardLayout.addView(bottomOfBar);
 
