@@ -101,6 +101,8 @@ public class MainActivity extends AppCompatActivity{
                 case "å":
                     wordArray.set(wordArray.indexOf(c),"aa");
                     break;
+                case " ":
+                    wordArray.set(wordArray.indexOf(c),"_");
                 default:
                     break;
 
@@ -212,6 +214,9 @@ public class MainActivity extends AppCompatActivity{
         ImageView clock = new ImageView(this);
         TextView itemsUsed = new TextView(this);
         TextView time = new TextView(this);
+
+        //change font of time and recipeNameTextView
+
         LinearLayout cardLayout = new LinearLayout(this);
         LinearLayout bottomOfBar = new LinearLayout(this);
         LinearLayout mortorAndItems = new LinearLayout(this);
